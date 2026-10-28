@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#071215">
-<title>RKM Chat · Premium v7</title>
+<title>RKM Chat · Premium v8</title>
 <style>
 :root{--green:#075e54;--green2:#128c7e;--mint:#d9fdd3;--paper:#efeae2;--bg:#edf1f0;--line:#e4e9e7;--ink:#172b29;--muted:#6d7f7b;--panel:#fff;--danger:#c83e48;--shadow:0 14px 44px #12312c18}
 *{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#dfe7e4;color:var(--ink);-webkit-text-size-adjust:100%}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:default}.hidden{display:none!important}
@@ -142,6 +142,93 @@ body.v5-light #themeQuickToggle{background:#e5f8f0;color:#16855f;border-color:#b
 @media(max-width:390px){.profile-mini-name{max-width:112px}.head-actions{gap:0}.head-actions .icon-btn{width:32px;height:34px}.nav-tab{font-size:10px}.main-head{gap:5px}.peer-actions .icon-btn{width:31px;height:34px}.rkm-sticker-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
+
+/* RKM Chat Premium v8 — complete layout refresh, preserving the existing API logic */
+.app-brand{display:none}
+@media(min-width:1100px){
+  body{padding:0}
+  .app{width:calc(100vw - 32px);max-width:1780px;height:calc(100dvh - 32px);min-height:560px;margin:16px auto;grid-template-columns:clamp(480px,33vw,610px) minmax(0,1fr);border-radius:27px}
+  .sidebar{display:grid;min-width:0;min-height:0;grid-template-columns:clamp(138px,10vw,174px) minmax(0,1fr);grid-template-rows:122px 58px 42px minmax(0,1fr) 43px;grid-template-areas:"head head" "nav search" "nav title" "nav items" "status status";overflow:hidden}
+  .side-head{grid-area:head;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:36px 48px;align-content:center;gap:8px 10px;padding:10px 15px;background:linear-gradient(115deg,#0e2227,#102028);border-bottom:1px solid #1b3a40;min-height:0}
+  .app-brand{grid-column:1/-1;grid-row:1;display:flex;align-items:center;gap:10px;min-width:0}
+  .app-brand-icon{width:31px;height:31px;border-radius:11px;display:grid;place-items:center;flex:none;background:linear-gradient(140deg,#32edac,#1ab789);color:#05271c;font-size:12px;font-weight:900;box-shadow:0 0 0 4px #27dca012}
+  .app-brand-copy{display:flex;flex-direction:column;min-width:0;line-height:1.15}.app-brand-copy strong{font-size:16px;font-weight:850;letter-spacing:-.35px;color:#f0fffa}.app-brand-copy small{font-size:10px;color:#83a4a7;margin-top:4px}
+  .side-head .my-profile{grid-column:1;grid-row:2;min-width:0;gap:9px;align-self:center}
+  .side-head .my-profile .avatar{width:39px;height:39px}
+  .side-head .profile-mini-name{font-size:12px;max-width:125px}.side-head .profile-mini-phone{font-size:10px;max-width:145px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-head .head-actions{grid-column:2;grid-row:2;align-self:center;gap:1px}.side-head .head-actions .icon-btn{width:32px;height:34px;font-size:16px;border-radius:10px}
+  .nav-tabs{grid-area:nav;min-width:0;min-height:0;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:6px;padding:15px 9px 10px;background:#0a191d;border:0;border-right:1px solid #19373d;overflow:auto}
+  .nav-tab{display:flex;align-items:center;justify-content:flex-start;gap:10px;text-align:left;min-height:43px;width:100%;padding:10px 11px;border-radius:13px;font-size:12px;font-weight:760;white-space:normal}
+  .nav-tab::before{display:inline-grid;place-items:center;flex:none;width:20px;height:20px;font-size:17px;line-height:1;color:#8db0b2}
+  .nav-tab[data-section="chats"]::before{content:"◉"}.nav-tab[data-section="contacts"]::before{content:"♙"}.nav-tab[data-section="status"]::before{content:"◌"}.nav-tab[data-section="calls"]::before{content:"☎"}
+  .nav-tab.active{background:linear-gradient(110deg,#123d34,#102d2a);border:1px solid #1d5949;color:#40f0a9;box-shadow:inset 0 0 0 1px #21cd8b10}
+  .nav-tab.active::before{color:#40f0a9}
+  .side-extra-actions{display:flex;flex-direction:column;gap:5px;margin-top:auto;padding-top:17px;border-top:1px solid #1a373c}
+  .side-extra-title{font-size:9px;font-weight:850;letter-spacing:.15em;color:#688a8e;padding:0 10px 5px}
+  .side-extra{display:flex;align-items:center;gap:10px;min-height:38px;text-align:left;border:1px solid transparent;border-radius:11px;padding:8px 10px;background:transparent;color:#a3c0c0;font-size:15px}
+  .side-extra span{font-size:11px;font-weight:650;line-height:1.3}.side-extra:hover{background:#132b30;border-color:#21464b;color:#4feab2}
+  .search-row{grid-area:search;min-width:0;padding:10px 12px;background:#0b1b20;border-bottom:1px solid #17343a}
+  .search-row input{height:39px;border-radius:13px;background:#10262b;border-color:#1e3c42}
+  #listTitle{grid-area:title;align-self:stretch;display:flex;align-items:center;padding:0 14px!important;margin:0!important;border-bottom:1px solid #18343a;background:#0b1a1e!important;color:#76989b!important}
+  .items{grid-area:items;min-height:0;overscroll-behavior:contain;padding-bottom:6px}
+  .side-bottom{grid-area:status;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:12px 14px}
+  .contact{min-height:75px;padding:12px 11px}.contact .avatar{width:44px;height:44px}.contact-name{font-size:13px}.contact-preview{font-size:11px}
+  .main{min-width:0;border-radius:0 25px 25px 0;overflow:hidden}
+  .main-head{min-height:82px;height:82px;padding:12px 22px;background:linear-gradient(110deg,#0f2227,#0d1c23)}
+  .main-head .avatar{width:46px;height:46px}.peer-title{font-size:16px}.peer-subtitle{font-size:12px}
+  .messages{padding:24px clamp(18px,3vw,42px);background-image:radial-gradient(circle at 10% 10%,#1b505326 0,transparent 29%),radial-gradient(circle at 90% 70%,#1e3c5728 0,transparent 32%)}
+  .compose{padding:13px 18px 15px;min-height:72px;background:#0b1b20}
+  .compose textarea{min-height:46px;max-height:132px;border-radius:17px}
+  .welcome-view{display:flex;align-items:center;justify-content:center;padding:clamp(20px,4vw,54px);background:radial-gradient(ellipse at 50% 15%,#10373b 0,transparent 42%),linear-gradient(145deg,#071417,#071216 68%,#0c151e)}
+  .welcome-dashboard{width:min(100%,960px);display:flex;flex-direction:column;gap:18px;margin:auto}
+  .welcome-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(180px,.75fr);align-items:center;gap:22px;padding:clamp(22px,3vw,38px);border-radius:27px;border:1px solid #22454b;background:linear-gradient(130deg,#11282eeb,#0b1a20f7);box-shadow:0 26px 70px #0004;position:relative;overflow:hidden}
+  .welcome-kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:7px 11px;border:1px solid #275b4b;border-radius:999px;background:#12372f;color:#50e8b0;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
+  .welcome-hero h2{font-size:clamp(26px,3vw,43px)!important;line-height:1.1;letter-spacing:-1.3px!important;margin:17px 0 12px!important;color:#f1fffa!important;max-width:540px}
+  .welcome-hero p{font-size:clamp(13px,1.2vw,15px);line-height:1.7;color:#8eadaf;margin:0;max-width:540px}
+  .welcome-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.welcome-actions .btn{min-height:45px;padding:12px 16px}
+  .welcome-art{min-height:205px;position:relative;display:grid;place-items:center;isolation:isolate}
+  .welcome-orbit{position:absolute;width:min(90%,240px);aspect-ratio:1;border:1px solid #2c565b;border-radius:50%;box-shadow:0 0 0 18px #1a414414,0 0 0 38px #1a41440d;transform:rotate(-22deg)}
+  .welcome-orbit::before,.welcome-orbit::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#39e9a5;box-shadow:0 0 22px #39e9a588}.welcome-orbit::before{top:18%;left:17%}.welcome-orbit::after{bottom:14%;right:12%;background:#63dcfa}
+  .welcome-logo{width:115px;height:115px;border-radius:36px;display:grid;place-items:center;background:linear-gradient(145deg,#29ecaa,#0b9e79);color:#06281d;font-size:37px;font-weight:900;letter-spacing:-2px;box-shadow:0 22px 60px #20d89526,0 0 0 12px #2ce4a00c;transform:rotate(-5deg)}
+  .welcome-floating{position:absolute;display:grid;place-items:center;border:1px solid #2a5056;border-radius:16px;background:#10292ff2;color:#c3f8e5;box-shadow:0 12px 28px #0004;font-size:20px}.welcome-floating.one{top:12%;right:7%;width:54px;height:54px}.welcome-floating.two{left:3%;bottom:13%;width:48px;height:48px;color:#79e7f6}
+  .welcome-section-title{font-size:11px;font-weight:850;letter-spacing:.12em;color:#729396;margin:2px 2px 0}
+  .welcome-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .welcome-feature{border:1px solid #1d3b41;border-radius:18px;padding:17px 17px 18px;background:linear-gradient(145deg,#0f2227,#0b191d);min-height:126px}
+  .welcome-feature-icon{width:35px;height:35px;border-radius:12px;display:grid;place-items:center;background:#12372f;color:#42edaa;font-size:17px;margin-bottom:13px}
+  .welcome-feature strong{font-size:13px;display:block;color:#eaf9f5}.welcome-feature p{font-size:11px;line-height:1.55;color:#7e9ea1;margin:6px 0 0}
+  body.v5-light .app-brand-copy strong{color:#163336}body.v5-light .app-brand-copy small{color:#698789}
+  body.v5-light .side-head{background:linear-gradient(120deg,#f5fbfa,#eaf6f3);border-color:#d8e9e6}
+  body.v5-light .nav-tabs{background:#f7fbfb;border-color:#d8e9e6}
+  body.v5-light .nav-tab.active{background:#def7ed;border-color:#b5e8d4;color:#07885e}
+  body.v5-light .side-extra{color:#4b7374}body.v5-light .side-extra:hover{background:#e7f7f1;border-color:#c9e8de;color:#07875d}body.v5-light .side-extra-title{color:#7c999b}
+  body.v5-light .search-row,body.v5-light #listTitle{background:#f7fbfb!important;border-color:#d8e9e6!important}
+  body.v5-light .welcome-view{background:radial-gradient(ellipse at 50% 15%,#d8f0ec 0,transparent 46%),#f1f7f6}
+  body.v5-light .welcome-hero{background:linear-gradient(130deg,#fff,#f4fbf8);border-color:#d8e9e6;box-shadow:0 25px 70px #164a3d0c}
+  body.v5-light .welcome-hero h2{color:#173b3d!important}body.v5-light .welcome-hero p{color:#668487}
+  body.v5-light .welcome-kicker{background:#e0f8ed;border-color:#c4edd9;color:#087e5c}
+  body.v5-light .welcome-orbit{border-color:#bfded9}body.v5-light .welcome-logo{box-shadow:0 22px 60px #209d761c,0 0 0 12px #29b8870d}
+  body.v5-light .welcome-floating{background:#fff;border-color:#d9e9e5;color:#168260}
+  body.v5-light .welcome-feature{background:linear-gradient(145deg,#fff,#f6fbf9);border-color:#dceae8}body.v5-light .welcome-feature strong{color:#193a3c}body.v5-light .welcome-feature p{color:#6e898b}body.v5-light .welcome-feature-icon{background:#e0f8ed;color:#07875d}
+}
+@media (min-width:760px) and (max-width:1099px){
+  .app{width:calc(100vw - 24px);height:calc(100dvh - 24px);margin:12px auto;grid-template-columns:minmax(300px,37vw) minmax(0,1fr);border-radius:23px}
+  .sidebar{display:flex;flex-direction:column;min-height:0}.app-brand{display:none}
+  .side-head{display:flex;min-height:76px;gap:8px;padding:11px}.head-actions{gap:0}.head-actions .icon-btn{width:34px;height:36px}
+  .nav-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));flex:none;gap:3px;padding:8px}.nav-tab{display:block;text-align:center;padding:10px 3px;font-size:11px}.nav-tab::before{content:none!important}
+  .side-extra-actions{display:none}
+}
+@media(max-width:1099px){.welcome-art{min-height:150px}.welcome-hero{grid-template-columns:minmax(0,1fr) minmax(130px,.55fr);gap:12px}.welcome-logo{width:90px;height:90px;border-radius:29px;font-size:30px}.welcome-floating.one{width:43px;height:43px}.welcome-floating.two{width:40px;height:40px}.welcome-feature-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.welcome-feature{padding:14px;min-height:120px}}
+@media(max-width:759px){
+  .app-brand{display:none!important}.side-extra-actions{display:none!important}
+  .app{width:100%;height:100dvh;margin:0;min-height:0;border:0;border-radius:0;grid-template-columns:minmax(0,1fr)}
+  .sidebar{display:flex;flex-direction:column;min-height:0;overflow:hidden}.side-head{display:flex;min-height:70px;gap:7px;padding:calc(9px + env(safe-area-inset-top)) 10px 9px}
+  .nav-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));flex:none;gap:3px;padding:8px 7px max(8px,env(safe-area-inset-bottom));}
+  .nav-tab{display:block;text-align:center;padding:7px 2px;font-size:11px}.nav-tab::before{content:none!important}
+  .welcome-view{display:block;padding:14px 10px 90px;overflow:auto}.welcome-dashboard{display:flex;gap:12px}.welcome-hero{grid-template-columns:minmax(0,1fr);padding:20px 18px;gap:8px;border-radius:22px}.welcome-hero h2{font-size:28px!important;margin:14px 0 10px!important}.welcome-hero p{font-size:13px}.welcome-art{display:none}.welcome-actions{gap:7px;margin-top:17px}.welcome-actions .btn{flex:1;padding:11px 10px;font-size:12px}.welcome-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.welcome-feature{min-height:118px;padding:13px}.welcome-feature p{font-size:11px}
+  .app.page-open .main{padding-bottom:0}.app.page-open .sidebar .nav-tabs{display:grid!important}.app.page-open .sidebar{display:contents}
+}
+@media(max-width:390px){.welcome-feature-grid{grid-template-columns:1fr}.welcome-feature{min-height:auto}.head-actions .icon-btn{width:31px}.profile-mini-name{max-width:96px}}
+
 </style>
 </head>
 <body>
@@ -161,10 +248,11 @@ body.v5-light #themeQuickToggle{background:#e5f8f0;color:#16855f;border-color:#b
 <section id="app" class="app" hidden>
   <aside class="sidebar">
     <div class="side-head">
+      <div class="app-brand"><span class="app-brand-icon">RK</span><span class="app-brand-copy"><strong>RKM Chat</strong><small>Lebih dari sekadar chat</small></span></div>
       <div class="my-profile"><div class="avatar" id="myAvatar">RK</div><div style="min-width:0"><div id="myName" class="profile-mini-name">RKM Chat</div><div id="myPhone" class="profile-mini-phone"></div></div></div>
       <div class="head-actions"><button id="themeQuickToggle" class="icon-btn" title="Ganti tema gelap/terang" aria-label="Ganti tema">☼</button><button id="profileButton" class="icon-btn" title="Edit profil" aria-label="Edit profil">⚙</button><button id="logoutButton" class="icon-btn" title="Keluar akun" aria-label="Keluar">⇥</button></div>
     </div>
-    <nav class="nav-tabs"><button class="nav-tab active" data-section="chats">Chat</button><button class="nav-tab" data-section="contacts">Kontak</button><button class="nav-tab" data-section="status">Status</button><button class="nav-tab" data-section="calls">Panggilan</button></nav>
+    <nav class="nav-tabs" aria-label="Navigasi utama"><button class="nav-tab active" data-section="chats"><span>Chat</span></button><button class="nav-tab" data-section="contacts"><span>Kontak</span></button><button class="nav-tab" data-section="status"><span>Status</span></button><button class="nav-tab" data-section="calls"><span>Panggilan</span></button><div class="side-extra-actions" aria-label="Pintasan"><div class="side-extra-title">FITUR CEPAT</div><button type="button" id="quickStarred" class="side-extra">★ <span>Pesan berbintang</span></button><button type="button" id="quickArchive" class="side-extra">▣ <span>Arsip chat</span></button><button type="button" id="quickBlocked" class="side-extra">⊘ <span>Kontak diblokir</span></button><button type="button" id="quickSettings" class="side-extra">⚙ <span>Tampilan & pengaturan</span></button></div></nav>
     <div class="search-row"><input id="contactSearch" type="search" placeholder="Cari kontak atau nomor"></div>
     <div id="listTitle" class="section-label" style="padding:0 14px;margin:11px 0 4px">KONTAK</div>
     <div id="items" class="items"></div>
@@ -564,6 +652,38 @@ if(themeQuickToggle){
 unreadCount=function(peer){var reads=readObj(keyFor('readByPeer'),{}),cut=Number(reads[peer]||0),seen=read('onceSeen',{});return allMessages.filter(function(m){if(!same(m.recipient,me.phone)||!same(m.sender,peer)||timeMillis(m.time)<=cut)return false;if(typeof m.text==='string'&&m.text.indexOf(META_PREFIX)===0)return false;var flags=messageMetaFlags(m,rkmStatusMetaMap());if(flags.once&&seen[msgKey(m)])return false;return true;}).length;};
 /* Point the compact Aa control at the upgraded theme/accessibility dialog too. */
 document.querySelectorAll('button[title="Ukuran teks dan tema"]').forEach(function(b){b.onclick=openFontSettings;});
+
+
+/* v8 welcome dashboard and sidebar shortcuts. Existing API calls and chat handlers remain intact. */
+renderWelcome=function(){
+  if(composeNode)composeNode.classList.add('hidden');
+  mainHead.classList.remove('hidden');
+  $('peerAvatar').textContent='RK';$('peerTitle').textContent='RKM Chat';$('peerSubtitle').textContent='Ruang komunikasi pribadi';$('peerActions').classList.add('hidden');
+  mainBody.className='welcome-view';
+  mainBody.innerHTML='<div class="welcome-dashboard">'+
+    '<section class="welcome-hero"><div class="welcome-copy"><span class="welcome-kicker">● Ruang komunikasi pribadi</span><h2>Semua percakapan, satu tempat.</h2><p>Chat dengan nyaman, simpan kontak penting, bagikan status, dan jaga tampilan sesuai gaya kamu. Semua terhubung melalui server RKM Chat yang sudah digunakan.</p><div class="welcome-actions"><button type="button" id="welcomeAddContact" class="btn btn-primary">＋ Tambah kontak</button><button type="button" id="welcomeCreateStatus" class="btn btn-light">◉ Buat status</button></div></div><div class="welcome-art" aria-hidden="true"><div class="welcome-orbit"></div><div class="welcome-logo">RK</div><div class="welcome-floating one">✦</div><div class="welcome-floating two">⌁</div></div></section>'+
+    '<div class="welcome-section-title">JELAJAHI RKM CHAT</div><section class="welcome-feature-grid">'+
+    '<article class="welcome-feature"><div class="welcome-feature-icon">◉</div><strong>Pesan pribadi</strong><p>Temukan kontak dan lanjutkan percakapan dari daftar chat.</p></article>'+
+    '<article class="welcome-feature"><div class="welcome-feature-icon">▧</div><strong>Media dan suara</strong><p>Kirim foto atau pesan suara melalui fitur server yang tersedia.</p></article>'+
+    '<article class="welcome-feature"><div class="welcome-feature-icon">◌</div><strong>Status teman</strong><p>Bagikan pembaruan dan lihat status kontak yang tersimpan.</p></article>'+
+    '<article class="welcome-feature"><div class="welcome-feature-icon">☎</div><strong>Panggilan</strong><p>Kontrol panggilan suara/video sesuai dukungan browser dan jaringan.</p></article>'+
+    '<article class="welcome-feature"><div class="welcome-feature-icon">☼</div><strong>Tampilan personal</strong><p>Atur tema terang/gelap dan ukuran teks melalui pengaturan tampilan.</p></article>'+
+    '<article class="welcome-feature"><div class="welcome-feature-icon">♙</div><strong>Privasi perangkat</strong><p>Kelola arsip, blokir, dan preferensi lokal dari pintasan navigasi.</p></article>'+
+    '</section><p class="hint" style="text-align:center;margin:2px 0 0">Pilih chat di daftar sebelah kiri untuk mulai berkirim pesan.</p></div>';
+  app.classList.remove('page-open');
+  $('welcomeAddContact').onclick=openAddContact;
+  $('welcomeCreateStatus').onclick=renderStatusPage;
+};
+if($('quickStarred'))$('quickStarred').onclick=function(){
+  var ids=starred(),arr=allMessages.filter(function(m){return ids.indexOf(msgKey(m))>=0;});
+  var html='<h3>Pesan berbintang</h3><p class="subtle">Pesan penting yang kamu tandai pada perangkat ini.</p>';
+  if(!arr.length)html+='<div class="empty-state">Belum ada pesan berbintang. Buka menu sebuah pesan untuk menandainya.</div>';
+  else html+=arr.map(function(m){return '<div class="v5-star-item"><b>'+safe(displayName(m.sender))+'</b><p>'+safe(visibleMessageText(m)||('[ '+(m.type||'media')+' ]'))+'</p><small>'+safe(dateTime(m.time))+'</small></div>';}).join('');
+  html+='<div class="modal-actions"><button id="quickStarredClose" class="btn btn-light">Tutup</button></div>';openModal(html);$('quickStarredClose').onclick=closeModal;
+};
+if($('quickArchive'))$('quickArchive').onclick=function(){openLocalPeerList('archived');};
+if($('quickBlocked'))$('quickBlocked').onclick=function(){openLocalPeerList('blocked');};
+if($('quickSettings'))$('quickSettings').onclick=function(){openFontSettings();};
 
 })();
 
